@@ -2,22 +2,24 @@
 
 # Run this from the fjord-l10n root directory--not this directory!
 #
-# Usage: ./bin/run_svn_and_l10n_completion.sh PYTHONBIN OUTPUTFILE LOCALESDIR
+# Usage: ./bin/run_svn_and_l10n_completion.sh OUTPUTFILE LOCALESDIR
+#
+# Note, this uses python from your path.
 
 function usage() {
-    echo "usage: ./bin/run_svn_and_l10n_completion.sh PYTHONBIN OUTPUTFILE LOCALESDIR"
+    echo "usage: ./bin/run_svn_and_l10n_completion.sh OUTPUTFILE LOCALESDIR"
     exit 1
 }
 
-if [[ $# -lt 3 ]];
+if [[ $# -lt 2 ]];
 then
     echo "Not enough arguments."
     usage
 fi
 
-PYTHONBIN=$1
-OUTPUTFILE=$2
-LOCALESDIR=$3
+PYTHONBIN=$(which python)
+OUTPUTFILE=$1
+LOCALESDIR=$2
 
 # Check if LOCALESDIR exists
 if [[ ! -e "$LOCALESDIR" ]];
