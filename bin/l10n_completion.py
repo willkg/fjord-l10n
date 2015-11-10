@@ -153,12 +153,13 @@ def get_completion_data(locale_files):
 
 
 @click.command()
-@click.option('--output', help='Abs path for output .json file')
-@click.option('--locales', help='Abs path for locales/ dir')
+@click.option('--output', required=True, help='Abs path for output .json file')
+@click.option('--locale', required=True, help='Abs path for locale/ dir')
 @click.option('--truncate', default=0, help='Days to truncate results')
-def main(output, locales, truncate):
+def main(output, locale, truncate):
+    """Go through locale files and update completion data."""
     # Get list of locales dirs
-    locale_files = get_locale_files(locales)
+    locale_files = get_locale_files(locale)
 
     # Generate completion data
     created = datetime.date.today().strftime('%Y-%m-%d')

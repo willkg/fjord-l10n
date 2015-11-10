@@ -7,7 +7,7 @@
 # Note, this uses python from your path.
 
 function usage() {
-    echo "usage: ./bin/run_svn_and_l10n_completion.sh OUTPUTFILE LOCALESDIR"
+    echo "usage: ./bin/run_svn_and_l10n_completion.sh OUTPUTFILE LOCALEDIR"
     exit 1
 }
 
@@ -19,19 +19,20 @@ fi
 
 PYTHONBIN=$(which python)
 OUTPUTFILE=$1
-LOCALESDIR=$2
+LOCALEDIR=$2
 
-# Check if LOCALESDIR exists
-if [[ ! -e "$LOCALESDIR" ]];
+# Check if LOCALEDIR exists
+if [[ ! -e "$LOCALEDIR" ]];
 then
-    echo "$LOCALESDIR does not exist."
+    echo "$LOCALEDIR does not exist."
+    echo "You'll need to svn checkout or git clone that directory."
     usage
 fi
 
 # Update the files in svn as a subshell
-(cd "$LOCALESDIR" && svn up)
+(cd "$LOCALEDIR" && svn up)
 
 "$PYTHONBIN" ./bin/l10n_completion.py \
              --output "$OUTPUTFILE" \
-             --locales "$LOCALESDIR" \
+             --locale "$LOCALEDIR" \
              --truncate 90
