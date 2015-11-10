@@ -1,0 +1,4 @@
+click==5.1
+dennis==0.7
+polib==1.0.7
+requests==2.8.1
