@@ -5,6 +5,8 @@ README
 This repository holds scripts and exporters for tracking l10n progress
 for Input.
 
+This generates data for `postatus <https://github.com/willkg/postatus/>`_.
+
 
 Installation
 ============
